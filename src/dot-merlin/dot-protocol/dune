@@ -1,5 +1,4 @@
 (library
  (name merlin_dot_protocol)
  (public_name dot-merlin-reader.merlin_dot_protocol)
- (wrapped false)
- (libraries merlin_utils csexp result))
+ (libraries merlin_merlin_utils csexp result))

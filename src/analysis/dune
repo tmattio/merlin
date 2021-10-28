@@ -1,15 +1,31 @@
 (library
  (name merlin_analysis)
- (flags -open Merlin_utils)
+ (flags
+  -open
+  Merlin_merlin_utils
+  -open
+  Merlin_parsing
+  -open
+  Merlin_typing
+  -open
+  Merlin_specific
+  -open
+  Merlin_preprocess
+  -open
+  Merlin_extend
+  -open
+  Merlin_kernel
+  -open
+  Merlin_query_protocol)
  (public_name merlin.analysis)
  (libraries
-  config
+  merlin_config
   merlin_specific
   merlin_extend
   merlin_kernel
-  merlin_utils
-  parsing
-  preprocess
-  query_protocol
-  typing
-  utils))
+  merlin_merlin_utils
+  merlin_parsing
+  merlin_preprocess
+  merlin_query_protocol
+  merlin_typing
+  merlin_utils))

@@ -1,22 +1,40 @@
 (library
- (name      query_protocol)
+ (name merlin_query_protocol)
  (public_name merlin.query_protocol)
- (modules   query_protocol)
- (flags -open Merlin_utils)
- (libraries merlin_kernel merlin_utils parsing))
+ (modules query_protocol)
+ (flags -open Merlin_merlin_utils -open Merlin_parsing -open Merlin_kernel)
+ (libraries merlin_kernel merlin_merlin_utils merlin_parsing))
 
 (library
- (name      query_commands)
- (public_name      merlin.query_commands)
- (modules   query_commands)
- (flags -open Merlin_utils -open Merlin_analysis)
+ (name merlin_query_commands)
+ (public_name merlin.query_commands)
+ (modules query_commands)
+ (flags
+  -open
+  Merlin_merlin_utils
+  -open
+  Merlin_utils
+  -open
+  Merlin_analysis
+  -open
+  Merlin_typing
+  -open
+  Merlin_parsing
+  -open
+  Merlin_query_protocol
+  -open
+  Merlin_specific
+  -open
+  Merlin_kernel
+  -open
+  Merlin_config)
  (libraries
-  merlin_utils
+  merlin_merlin_utils
   merlin_kernel
-  utils
-  parsing
-  typing
+  merlin_utils
+  merlin_parsing
+  merlin_typing
   merlin_specific
-  config
+  merlin_config
   merlin_analysis
-  query_protocol))
+  merlin_query_protocol))

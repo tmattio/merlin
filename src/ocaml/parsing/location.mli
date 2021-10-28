@@ -21,6 +21,7 @@
 *)
 
 open Format
+open Merlin_utils
 
 type t = Warnings.loc = {
   loc_start: Lexing.position;

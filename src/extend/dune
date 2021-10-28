@@ -1,6 +1,7 @@
 (library
- (name      merlin_extend)
- (public_name      merlin.extend)
- (wrapped   false)
- (modules   (:standard \ extend_helper))
- (libraries parsing typing unix utils))
+ (name merlin_extend)
+ (public_name merlin.extend)
+ (modules
+  (:standard \ extend_helper))
+ (flags -open Merlin_parsing -open Merlin_typing)
+ (libraries merlin_parsing merlin_typing unix merlin_utils))

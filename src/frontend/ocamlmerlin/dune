@@ -4,28 +4,48 @@
  (name ocamlmerlin_server)
  (package merlin)
  (public_name ocamlmerlin-server)
- (flags -open Merlin_utils -open Merlin_analysis)
- (modules (:standard \ gen_ccflags))
- (libraries config yojson merlin_analysis merlin_kernel
-            merlin_utils os_ipc parsing query_protocol query_commands
-            typing utils))
+ (flags -open Merlin_merlin_utils -open Merlin_analysis)
+ (modules
+  (:standard \ gen_ccflags))
+ (libraries
+  merlin_config
+  yojson
+  merlin_analysis
+  merlin_kernel
+  merlin_merlin_utils
+  merlin_os_ipc
+  merlin_parsing
+  merlin_query_protocol
+  merlin_query_commands
+  merlin_typing
+  merlin_utils))
 
 (executable
- (name      gen_ccflags)
- (modules   gen_ccflags)
+ (name gen_ccflags)
+ (modules gen_ccflags)
  (libraries str))
 
 (rule
  (targets pre-flags post-flags)
- (deps    gen_ccflags.exe)
- (action  (run %{deps} "%{ocaml-config:ccomp_type}" %{targets})))
+ (deps gen_ccflags.exe)
+ (action
+  (run %{deps} "%{ocaml-config:ccomp_type}" %{targets})))
 
 (rule
  (targets ocamlmerlin.exe)
- (deps    (:c ocamlmerlin.c) pre-flags post-flags)
- (action  (run %{cc} "%{read-lines:pre-flags}%{targets}" %{c} %{read-lines:post-flags})))
+ (deps
+  (:c ocamlmerlin.c)
+  pre-flags
+  post-flags)
+ (action
+  (run
+   %{cc}
+   "%{read-lines:pre-flags}%{targets}"
+   %{c}
+   %{read-lines:post-flags})))
 
 (install
  (package merlin)
  (section bin)
- (files   (ocamlmerlin.exe as ocamlmerlin)))
+ (files
+  (ocamlmerlin.exe as ocamlmerlin)))

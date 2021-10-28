@@ -1,7 +1,13 @@
 (library
-  (name typing)
-  (public_name merlin.typing)
-  (wrapped false)
-  (flags -open Merlin_utils (:standard -w -9))
-  (modules_without_implementation annot outcometree)
-  (libraries merlin_utils parsing utils))
+ (name merlin_typing)
+ (public_name merlin.typing)
+ (flags
+  -open
+  Merlin_merlin_utils
+  -open
+  Merlin_utils
+  -open
+  Merlin_parsing
+  (:standard -w -9))
+ (modules_without_implementation annot outcometree)
+ (libraries merlin_merlin_utils merlin_parsing merlin_utils))

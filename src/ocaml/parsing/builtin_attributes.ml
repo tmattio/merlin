@@ -15,6 +15,7 @@
 
 open Asttypes
 open Parsetree
+open Merlin_utils
 
 let string_of_cst = function
   | Pconst_string(s, _, _) -> Some s

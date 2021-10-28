@@ -1,7 +1,7 @@
 (library
-  (name utils)
-  (public_name merlin.utils)
-  (wrapped false)
-  (libraries config merlin_utils)
-  (flags (-open Merlin_utils))
-  (modules_without_implementation result_compat))
+ (name merlin_utils)
+ (public_name merlin.utils)
+ (libraries merlin_config merlin_merlin_utils)
+ (flags
+  (-open Merlin_merlin_utils -open Merlin_config))
+ (modules_without_implementation result_compat))

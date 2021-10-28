@@ -84,7 +84,7 @@ module Handshake = struct
     cmt_magic_number : string;
   }
 
-  let versions = Config.({
+  let versions = Merlin_utils.Config.({
       ast_impl_magic_number;
       ast_intf_magic_number;
       cmi_magic_number;

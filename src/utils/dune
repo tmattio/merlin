@@ -1,7 +1,7 @@
 (rule (copy# ../platform/platform_misc.c platform_misc.c))
 
 (library
- (name merlin_utils)
+ (name merlin_merlin_utils)
  (public_name merlin.merlin_utils)
  (libraries str yojson unix result)
  (foreign_stubs (language c) (names platform_misc)))

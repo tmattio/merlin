@@ -1,6 +1,18 @@
 (library
-  (name merlin_specific)
-  (public_name merlin.specific)
-  (wrapped false)
-  (flags -open Merlin_utils)
-  (libraries merlin_utils parsing preprocess typing utils))
+ (name merlin_specific)
+ (public_name merlin.specific)
+ (flags
+  -open
+  Merlin_merlin_utils
+  -open
+  Merlin_utils
+  -open
+  Merlin_typing
+  -open
+  Merlin_parsing)
+ (libraries
+  merlin_merlin_utils
+  merlin_parsing
+  merlin_preprocess
+  merlin_typing
+  merlin_utils))

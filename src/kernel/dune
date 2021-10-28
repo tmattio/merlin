@@ -1,15 +1,46 @@
-(rule (copy# ../ocaml/driver/pparse.ml  pparse.ml ))
-(rule (copy# ../ocaml/driver/pparse.mli pparse.mli))
+(rule
+ (copy# ../ocaml/driver/pparse.ml pparse.ml))
+
+(rule
+ (copy# ../ocaml/driver/pparse.mli pparse.mli))
 
 (library
  (name merlin_kernel)
  (public_name merlin.kernel)
- (wrapped false)
- (flags -open Merlin_utils)
- (libraries config os_ipc parsing preprocess typing utils
-            merlin_extend merlin_specific merlin_utils merlin_dot_protocol))
+ (flags
+  -open
+  Merlin_merlin_utils
+  -open
+  Merlin_utils
+  -open
+  Merlin_typing
+  -open
+  Merlin_parsing
+  -open
+  Merlin_preprocess
+  -open
+  Merlin_specific
+  -open
+  Merlin_extend
+  -open
+  Merlin_dot_protocol
+  -open
+  Merlin_os_ipc
+  -open
+  Merlin_config)
+ (libraries
+  merlin_config
+  merlin_os_ipc
+  merlin_parsing
+  merlin_preprocess
+  merlin_typing
+  merlin_utils
+  merlin_extend
+  merlin_specific
+  merlin_merlin_utils
+  merlin_dot_protocol))
 
 (rule
-  (targets standard_library.ml)
-  (action
-    (write-file %{targets} "let path = {|%{ocaml-config:standard_library}|}")))
+ (targets standard_library.ml)
+ (action
+  (write-file %{targets} "let path = {|%{ocaml-config:standard_library}|}")))
