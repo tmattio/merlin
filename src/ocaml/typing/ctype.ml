@@ -1540,7 +1540,7 @@ let expand_abbrev_gen kind find_type_expansion env ty =
             (* For gadts, remember type as non exportable *)
             (* The ambiguous level registered for ty' should be the highest *)
             (* if !trace_gadt_instances then begin *)
-            let scope = Int.max lv (get_scope ty) in
+            let scope = max lv (get_scope ty) in
             update_scope scope ty;
             update_scope scope ty';
             ty'
@@ -2434,7 +2434,7 @@ let add_gadt_equation env source destination =
   else if local_non_recursive_abbrev !env source destination then begin
     let destination = duplicate_type destination in
     let expansion_scope =
-      Int.max (Path.scope source) (get_gadt_equations_level ())
+      max (Path.scope source) (get_gadt_equations_level ())
     in
     let decl =
       new_local_type ~manifest_and_scope:(destination, expansion_scope) () in
@@ -2659,8 +2659,8 @@ and unify2 env t1 t2 =
   ignore (expand_head_unif !env t2);
   let t1' = expand_head_unif !env t1 in
   let t2' = expand_head_unif !env t2 in
-  let lv = Int.min (get_level t1') (get_level t2') in
-  let scope = Int.max (get_scope t1') (get_scope t2') in
+  let lv = min (get_level t1') (get_level t2') in
+  let scope = max (get_scope t1') (get_scope t2') in
   update_level_for Unify !env lv t2;
   update_level_for Unify !env lv t1;
   update_scope_for Unify scope t2;
@@ -2941,7 +2941,7 @@ and unify_row env row1 row2 =
     | Some _, None -> rm1
     | None, Some _ -> rm2
     | None, None ->
-        newty2 ~level:(Int.min (get_level rm1) (get_level rm2)) (Tvar None)
+        newty2 ~level:(min (get_level rm1) (get_level rm2)) (Tvar None)
   in
   let fixed = merge_fixed_explanation fixed1 fixed2
   and closed = row1_closed || row2_closed in
