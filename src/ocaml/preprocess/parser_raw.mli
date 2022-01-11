@@ -492,13 +492,14 @@ module MenhirInterpreter : sig
   Parsetree.type_declaration) nonterminal
     | N_generic_type_declaration_no_nonrec_flag_type_subst_kind_ : ((Asttypes.rec_flag * string Location.loc option) *
   Parsetree.type_declaration) nonterminal
-    | N_generic_constructor_declaration_epsilon_ : (Merlin_parsing.Ast_helper.str * Parsetree.constructor_arguments *
-  Parsetree.core_type option * Parsetree.attributes * Location.t *
-  Merlin_parsing.Docstrings.info) nonterminal
-    | N_generic_constructor_declaration_BAR_ : (Merlin_parsing.Ast_helper.str * Parsetree.constructor_arguments *
-  Parsetree.core_type option * Parsetree.attributes * Location.t *
-  Merlin_parsing.Docstrings.info) nonterminal
-    | N_generalized_constructor_arguments : (Parsetree.constructor_arguments * Parsetree.core_type option) nonterminal
+    | N_generic_constructor_declaration_epsilon_ : (Merlin_parsing.Ast_helper.str * Merlin_parsing.Ast_helper.str list *
+  Parsetree.constructor_arguments * Parsetree.core_type option *
+  Parsetree.attributes * Location.t * Merlin_parsing.Docstrings.info) nonterminal
+    | N_generic_constructor_declaration_BAR_ : (Merlin_parsing.Ast_helper.str * Merlin_parsing.Ast_helper.str list *
+  Parsetree.constructor_arguments * Parsetree.core_type option *
+  Parsetree.attributes * Location.t * Merlin_parsing.Docstrings.info) nonterminal
+    | N_generalized_constructor_arguments : (Merlin_parsing.Ast_helper.str list * Parsetree.constructor_arguments *
+  Parsetree.core_type option) nonterminal
     | N_functor_args : ((Lexing.position * Parsetree.functor_parameter) list) nonterminal
     | N_functor_arg : (Lexing.position * Parsetree.functor_parameter) nonterminal
     | N_function_type : (Parsetree.core_type) nonterminal
