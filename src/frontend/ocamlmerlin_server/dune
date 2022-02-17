@@ -1,0 +1,38 @@
+(include_subdirs unqualified)
+
+(library
+ (name ocamlmerlin_server)
+ (public_name merlin.ocamlmerlin-server)
+ (flags
+  -open
+  Merlin_config
+  -open
+  Merlin_parsing
+  -open
+  Merlin_typing
+  -open
+  Merlin_query_commands
+  -open
+  Merlin_os_ipc
+  -open
+  Merlin_utils
+  -open
+  Merlin_kernel
+  -open
+  Merlin_merlin_utils
+  -open
+  Merlin_analysis
+  -open
+  Merlin_query_protocol)
+ (libraries
+  merlin_config
+  yojson
+  merlin_analysis
+  merlin_kernel
+  merlin_merlin_utils
+  merlin_os_ipc
+  merlin_parsing
+  merlin_query_protocol
+  merlin_query_commands
+  merlin_typing
+  merlin_utils))

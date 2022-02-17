@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <signal.h>
+
+#include <caml/mlvalues.h>
+
 #ifdef _WIN32
 /* GetNamedPipeServerProcessId requires Windows Vista+ */
 #undef _WIN32_WINNT
@@ -632,7 +635,21 @@ static void unexpected_termination(int argc, char **argv)
   failwith("abnormal termination");
 }
 
-int main(int argc, char **argv)
+int run_client() {
+    argv[0] = ocamlmerlin_server;
+#ifdef _WIN32
+    int err = _spawnvp(_P_WAIT, merlin_path, (const char *const *)argv);
+    if (err < 0)
+      failwith_perror("spawnvp(ocamlmerlin-server)");
+    else
+      exit(err);
+#else
+    execvp(merlin_path, argv);
+    failwith_perror("execvp(ocamlmerlin-server)");
+#endif
+}
+
+int run(int argc, char **argv)
 {
   char result = 0;
   int err = 0;
@@ -707,4 +724,24 @@ int main(int argc, char **argv)
 
   /* This is never reached */
   return 0;
+}
+
+CAMLprim value caml_run(value argc, value argv) {
+  int i;
+  char **argv_c;
+  argv_c = malloc(sizeof(char *) * (Int_val(argc) + 1));
+  for (i = 0; i < Int_val(argc); ++i)
+    argv_c[i] = String_val(Field(argv, i));
+  argv_c[i] = NULL;
+  run(Int_val(argc), argv_c);
+  free(argv_c);
+  return Val_unit;
+}
+
+CAMLprim value caml_run_client(value merlin_path, value argc, value argv) {
+  char *argv[2];
+  argv[0] = String_val(merlin_path);
+  argv[1] = NULL;
+  run(1, argv);
+  return Val_unit;
 }
