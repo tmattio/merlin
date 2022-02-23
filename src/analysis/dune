@@ -4,16 +4,20 @@
   -open Ocaml_utils
   -open Ocaml_parsing
   -open Ocaml_typing
+  -open Merlin_extend
+  -open Merlin_specific
+  -open Merlin_preprocess
+  -open Merlin_kernel
   -open Merlin_utils)
  (public_name merlin.analysis)
  (libraries
-  config
+  merlin_config
   merlin_specific
   merlin_extend
   merlin_kernel
   merlin_utils
   ocaml_parsing
-  preprocess
+  merlin_preprocess
   query_protocol
   ocaml_typing
   ocaml_utils))
